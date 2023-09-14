@@ -55,4 +55,14 @@ describe("sample", () => {
     expect(title instanceof SVGTitleElement).toBe(true);
     expect(isElement(title, "title")).toBe(true);
   });
+
+  it("should return true if element that is not extended by HTMLElement like MathMLElement", () => {
+    // ensure svg root element is tagged "math"
+    const math = document.createElementNS(
+      "http://www.w3.org/1998/Math/MathML",
+      "math",
+    );
+    expect(math instanceof MathMLElement).toBe(true);
+    expect(isElement(math, "math")).toBe(true);
+  });
 });
