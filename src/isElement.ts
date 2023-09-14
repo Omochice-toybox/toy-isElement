@@ -1,7 +1,16 @@
-export function isElement<T extends keyof HTMLElementTagNameMap>(
+function isElement<T extends keyof HTMLElementTagNameMap>(
   element: HTMLElement,
   tagName: T,
-): element is HTMLElementTagNameMap[T] {
+): element is HTMLElementTagNameMap[T];
+function isElement<T extends keyof SVGElementTagNameMap>(
+  element: Element,
+  tagName: T,
+): element is SVGElementTagNameMap[T];
+function isElement<T extends keyof MathMLElementTagNameMap>(
+  element: Element,
+  tagName: T,
+): element is MathMLElementTagNameMap[T];
+function isElement(element: Element, tagName: string): element is Element {
   return element.tagName.toLowerCase() === tagName.toLowerCase();
 }
 
