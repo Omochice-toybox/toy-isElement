@@ -44,5 +44,22 @@ if (import.meta.vitest) {
       // ensure that isElement return true even if element is in iframe
       expect(isElement(div, "div")).toBe(true);
     });
+
+    it("should return true if element that is not extended by HTMLElement like SVGElement", () => {
+      // ensure svg root element is tagged "svg"
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      expect(svg instanceof SVGElement).toBe(true);
+      expect(svg instanceof SVGSVGElement).toBe(true);
+      expect(isElement(svg, "svg")).toBe(true);
+
+      // ensure svg child element too
+      const title = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "title",
+      );
+      svg.appendChild(title);
+      expect(title instanceof SVGTitleElement).toBe(true);
+      expect(isElement(title, "title")).toBe(true);
+    });
   });
 }
