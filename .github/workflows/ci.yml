@@ -28,5 +28,7 @@ jobs:
         run: pnpm biome check src
       - name: type check
         run: pnpm tsc --noEmit
+      - name: setup playwright
+        run: pnpm playwright install --with-deps
       - name: run vitest
         run: pnpm test
