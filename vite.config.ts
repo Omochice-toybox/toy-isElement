@@ -1,11 +1,16 @@
-import { defineConfig } from 'vitest/config'
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   define: {
-    'import.meta.vitest': false,
+    "import.meta.vitest": false,
   },
   test: {
-    includeSource: ['src/**/*.{js,ts}'],
-    environment: "jsdom"
+    includeSource: ["test/**/*.{js,ts}"],
+    browser: {
+      enabled: true,
+      provider: "playwright",
+      name: "chromium",
+      headless: true,
+    },
   },
-})
+});
